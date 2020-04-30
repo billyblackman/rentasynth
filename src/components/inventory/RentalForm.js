@@ -1,8 +1,9 @@
 import DatePicker from "react-datepicker"
 import { addDays } from "date-fns"
-import { useState } from "react"
+import React, { useState } from "react"
+import { Button } from "reactstrap"
 
-export const datePicker = () => {
+export const DatePickerComponent = () => {
 
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
@@ -21,6 +22,8 @@ export const datePicker = () => {
                             minDate={addDays(new Date(), 2)}
                             placeholderText="Return Date" 
                             onChange={date => setEndDate(date)} />
+
+                <Button color="primary">Add to cart</Button>
             </form>
         </>
     )
