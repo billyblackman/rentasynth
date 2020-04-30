@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import CustomerDashboard from "./CustomerDashboard"
 
-export default () => {
+export default ({toggle}) => {
     return (
-        <CustomerDashboard />
+        <CustomerDashboard toggle={toggle} />
     )
 }

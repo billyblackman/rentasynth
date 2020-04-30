@@ -6,6 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import "./index.css"
 
 
-ReactDOM.render(<Rentasynth/>, document.getElementById('root'));
+ReactDOM.render(<Rentasynth />, document.getElementById('root'));
 
 
