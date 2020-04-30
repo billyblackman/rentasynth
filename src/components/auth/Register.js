@@ -52,7 +52,7 @@ export const Register = (props) => {
     return (
         <div className="container--login">
             <form className="form--register" onSubmit={handleRegister}>
-                <h4 className="darkgray">If you are not a customer yet, please register a new account</h4>
+                <h2>Register</h2>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input ref={firstName} type="text"

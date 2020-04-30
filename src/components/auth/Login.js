@@ -6,7 +6,7 @@ export const Login = (props) => {
     const password = useRef()
 
     const existingUserCheck = () => {
-        return fetch(`http://localhost:8088/customers?email=${email.current.value}`)
+        return fetch(`http://localhost:8088/users?email=${email.current.value}`)
             .then(_ => _.json())
             .then(user => {
                 if (user.length) {
@@ -22,8 +22,8 @@ export const Login = (props) => {
         existingUserCheck()
             .then(exists => {
                 if (exists && exists.password === password.current.value) {
-                    localStorage.setItem("kennel_customer", exists.id)
-                    props.toggle()
+                    sessionStorage.setItem("rentasynth_customer", exists.id)
+                    // props.toggle()
                 } else if (exists && exists.password !== password.current.value) {
                     window.alert("Password does not match")
                 } else if (!exists) {
@@ -35,7 +35,7 @@ export const Login = (props) => {
     return (
         <div className="container--login">
             <form className="form--login" onSubmit={handleLogin}>
-                <h2>Please sign in</h2>
+                <h2>Sign in</h2>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email"
