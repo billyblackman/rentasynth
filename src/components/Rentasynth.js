@@ -13,10 +13,4 @@ export default () => {
     return (
         sessionStorage.getItem("rentasynth__customer") ? <Dashboard /> : <Auth toggle={toggle}/>
     )    
-   
-//     if (sessionStorage.getItem("rentasynth__customer")) {
-//         return <Dashboard toggle={toggle}/>
-//     } else {
-//         return <Auth toggle={toggle} />
-//     }
 }
