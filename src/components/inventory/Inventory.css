@@ -1,0 +1,17 @@
+.inventoryList {
+    display: flex;
+    padding: 0 10rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.inventory {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+
+.card {
+    height: fit-content;
+}

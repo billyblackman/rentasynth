@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react"
 import { InventoryContext } from "./InventoryProvider"
 import { InventoryItem } from "./InventoryItem"
+import "./Inventory.css"
 
 
 export default () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../index.css";
 import { Auth } from './auth/Auth';
 import Dashboard from './Dashboard';
-import CustomerDashboard from './CustomerDashboard';
+
 
 
 export default () => {
@@ -11,7 +11,7 @@ export default () => {
     const toggle = () => update(!check)
 
     return (
-        <CustomerDashboard />
+        <Dashboard />
     )
 }
 
