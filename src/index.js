@@ -1,12 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { Auth } from './components/auth/Auth';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Rentasynth from './components/Rentasynth'
+import "./index.css"
 
 
-ReactDOM.render(
-<Auth/>, 
-  document.getElementById('root')
-);
+ReactDOM.render(<Rentasynth/>, document.getElementById('root'));
 
 

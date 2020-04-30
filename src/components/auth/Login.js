@@ -23,7 +23,7 @@ export const Login = (props) => {
             .then(exists => {
                 if (exists && exists.password === password.current.value) {
                     sessionStorage.setItem("rentasynth_customer", exists.id)
-                    // props.toggle()
+                    props.toggle()
                 } else if (exists && exists.password !== password.current.value) {
                     window.alert("Password does not match")
                 } else if (!exists) {
