@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import "../index.css";
 import { Auth } from './auth/Auth';
+import Dashboard from './Dashboard';
+import CustomerDashboard from './CustomerDashboard';
 
 
 export default () => {
@@ -9,8 +10,11 @@ export default () => {
     const [check, update] = useState(false)
     const toggle = () => update(!check)
 
-
     return (
-        <Auth toggle={toggle}/>
-    )    
+        <CustomerDashboard />
+    )
 }
+
+// return (
+//     sessionStorage.getItem("rentasynth__customer") ? <Dashboard /> : <Auth toggle={toggle}/>
+// )    

@@ -6,7 +6,7 @@ export const InventoryContext = React.createContext()
 
 //InvetoryProvider decides what can be used by other components
 
-export const inventoryProvider = (props) => {
+export const InventoryProvider = (props) => {
 
     //inventory = data
     //setInventory sets the state of the inventory
