@@ -5,25 +5,31 @@ import { Button } from "reactstrap"
 import "./Inventory.css"
 import { OrderItemContext } from "../order/OderItemProvider"
 
-export const DatePickerComponent = ({inventory}) => {
+export const DatePickerComponent = ({inventory, toggle}) => {
 
     const { addOrderItem } = useContext(OrderItemContext)
 
     const userId = sessionStorage.getItem("rentasynth__customer")
-
-    // const startDate = useRef()
-    // const endDate = useRef() 
-
     const [startDate, setStartDate] = useState(null)
     const [endDate, setEndDate] = useState(null)
 
     const constructOrderItem = () => {
-        addOrderItem({
-            userId: userId,
-            inventoryId: inventory.id,
-            orderStartDate: startDate,
-            orderEndDate: endDate
-        })
+
+        if (startDate === null && endDate !== null) {
+            window.alert("Please select start date")
+        } else if (endDate === null && startDate !== null) {
+            window.alert("Please select return date")
+        } else if (startDate === null && endDate === null) {
+            window.alert("Please select dates")
+        } else {
+            addOrderItem({
+                userId: userId,
+                inventoryId: inventory.id,
+                orderStartDate: startDate,
+                orderEndDate: endDate
+            })
+            .then(toggle)
+        }
     }
 // debugger
 

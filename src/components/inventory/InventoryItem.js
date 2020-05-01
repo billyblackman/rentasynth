@@ -25,7 +25,7 @@ import { DatePickerComponent } from "./RentalForm"
             </Card>
             <Modal id="datePickerModal" isOpen={modal} size="sm" centered={modal} toggle={toggle}>
                 <ModalHeader>
-                    <DatePickerComponent inventory={inventory}/>
+                    <DatePickerComponent inventory={inventory} toggle={toggle}/>
                 </ModalHeader>
             </Modal>
 
