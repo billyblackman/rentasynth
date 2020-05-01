@@ -16,43 +16,9 @@
 
 .card {
     height: fit-content;
-    
 }
 
-/* #datePickerModal,
-.modal-dialog,
-.modal-sm,
-.react-datepicker__month,
-.react-datepicker__triangle,
-.react-datepicker_navigation,
-.react-datepicker_navigation--next,
-.react-datepicker__current-month,
-.react-datepicker__week,
-.react-datepicker__tab-loop__start,
-.react-datepicker__day,
-.react-datepicker__popper,
-.react-datepicker__day-name,
-.modal-dialog-centered,
-.react-datepicker-wrapper,
-.react-datepicker
-.modal-content,
-.modal-header,
-.modal-title,
-.modal,
-.fade,
-.show,
-.react-datepicker__input-container,
-.react-datepicker__input-container input,
-.react-datepicker__tab-loop,
-.datePicker,
-#datePicker,
-.react-datepicker-ignore-onclickoutside {
-    display: flex !important;
-    height: fit-content !important;
-    width: fit-content !important;
-    flex-wrap: wrap-reverse !important;
-    color: blueviolet !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    width: 100% !important;
-} */
+.cardBody {
+    background-color: rgb(155, 185, 194);
+    border-radius: 1%;
+}

@@ -17,7 +17,7 @@ import { DatePickerComponent } from "./RentalForm"
         <>
             <Card className="inventory">
                 <CardImg src={inventory.picture} />
-                <CardBody>
+                <CardBody className="cardBody">
                     <CardTitle className="inventory__name">{inventory.make} {inventory.model}</CardTitle>
                     <CardSubtitle className="inventory__rentalPrice">${inventory.rentalPrice}/day</CardSubtitle>
                     <Button color="secondary" onClick={toggle}>Rent me</Button>

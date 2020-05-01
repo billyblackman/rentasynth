@@ -1,0 +1,12 @@
+.navBar {
+    background-color: black;
+}
+
+.navLink {
+    color: rgb(173, 173, 173);
+}
+
+.navImage {
+    width: 55px;
+    height: 55px;
+}

@@ -11,6 +11,6 @@ export default () => {
     const toggle = () => update(!check)
 
     return (
-        sessionStorage.getItem("rentasynth__customer") ? <Dashboard /> : <Auth toggle={toggle}/>
+        sessionStorage.getItem("rentasynth__customer") ? <Dashboard toggle={toggle} /> : <Auth toggle={toggle}/>
     )    
 }
