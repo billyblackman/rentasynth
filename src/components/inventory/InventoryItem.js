@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Card, CardTitle, CardSubtitle, CardBody, CardImg, Modal, Button, ModalBody, ModalHeader } from "reactstrap"
+import { Card, CardTitle, CardSubtitle, CardBody, CardImg, Modal, Button, ModalHeader } from "reactstrap"
 import "./Inventory.css"
 import { DatePickerComponent } from "./RentalForm"
 
@@ -21,16 +21,14 @@ import { DatePickerComponent } from "./RentalForm"
                     <CardTitle className="inventory__name">{inventory.make} {inventory.model}</CardTitle>
                     <CardSubtitle className="inventory__rentalPrice">${inventory.rentalPrice}/day</CardSubtitle>
                     <Button color="secondary" onClick={toggle}>Rent me</Button>
-                    <Modal isOpen={modal} toggle={toggle}>
-                        <ModalBody>
-                            <DatePickerComponent toggle={toggle}/>
-                        </ModalBody>
-                    </Modal>
                 </CardBody>
             </Card>
+            <Modal id="datePickerModal" isOpen={modal} size="sm" centered={modal} toggle={toggle}>
+                <ModalHeader>
+                    <DatePickerComponent inventory={inventory}/>
+                </ModalHeader>
+            </Modal>
 
-            
         </>
     )
- }
- 
+}
