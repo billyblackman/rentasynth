@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react"
 import { InventoryProvider } from "./inventory/InventoryProvider"
 import InventoryList from "./inventory/InventoryList"
 import { OrderItemProvider } from "./order/OderItemProvider"
-import { Nav, Navbar, NavbarBrand, NavLink } from "reactstrap"
+import { Navbar, NavbarBrand, NavLink } from "reactstrap"
 import "./navbar.css"
-import { parseWithOptions } from "date-fns/fp"
 
 export default (props) => {
 

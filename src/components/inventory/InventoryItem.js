@@ -4,9 +4,9 @@ import "./Inventory.css"
 import { DatePickerComponent } from "./RentalForm"
 
 
-/**
- * InventoryList will pass keys to the Inventory object
- */
+
+//InventoryList will pass keys to the Inventory object
+ 
 
  export const InventoryItem = ({inventory}) => {
 

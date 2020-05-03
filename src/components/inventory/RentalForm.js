@@ -45,12 +45,12 @@ export const DatePickerComponent = ({inventory, toggle}) => {
                 inventoryId: inventory.id,
                 orderStartDate: startDate,
                 orderEndDate: endDate,
+                ordered: false,
                 rentalLength: rentalLength()
             })
             .then(toggle)
         }
     }
-// debugger
 
     return (
         <>
