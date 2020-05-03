@@ -25,7 +25,7 @@ export const CartItem =({orderItem}) => {
                 <CardBody>
                     <CardTitle className="inventoryItem__name">{inventoryItem.make} {inventoryItem.model}</CardTitle>
                     <CardSubtitle className="orderItem__price">${inventoryItem.rentalPrice} x {orderItem.rentalLength} days = ${totalRentalPrice}</CardSubtitle>
-                    <Button color="danger">Remove from cart</Button>
+                    <Button color="danger" onClick={deleteButton}>Remove from cart</Button>
                 </CardBody>
             </Card>
         </>
