@@ -1,22 +1,32 @@
 import React, { useContext } from "react"
-import { Card } from "reactstrap"
-import { OrderItemContext } from "./OderItemProvider"
+import { Card, CardImg, CardTitle, CardSubtitle, Button, CardBody } from "reactstrap"
+import { OrderItemContext } from "./OrderItemProvider"
+import { InventoryContext } from "../inventory/InventoryProvider"
 
 //CartList will pass keys to Cart object
 
-export const CartItem =({inventory, orderItem}) => {
+export const CartItem =({orderItem}) => {
 
     const { deleteOrderItem } = useContext(OrderItemContext)
 
-    const totalRentalPrice = (inventory.rentalPrice * orderItem.rentalLength)
+    const { inventory } = useContext(InventoryContext)
+
+    const inventoryItem = (inventory.find( item => {
+        return (item.id === orderItem.inventoryId)
+    }))
+
+    const totalRentalPrice = (inventoryItem.rentalPrice * orderItem.rentalLength)
+
+    const deleteButton = () => deleteOrderItem(orderItem.id)
 
     return (
         <>
             <Card className="cartItem">
-                <CardImg src={inventory.picture} />
-                <CardTitle className="inventory__name">{inventory.make} {inventory.model}</CardTitle>
-                <CardSubtitle className="orderItem__price">${inventory.rentalPrice} x {orderItem.rentalLength} = ${totalRentalPrice}</CardSubtitle>
-                <Button color="danger" onClick={deleteOrderItem(orderItem.id)}>Remove from cart</Button>
+                <CardBody>
+                    <CardTitle className="inventoryItem__name">{inventoryItem.make} {inventoryItem.model}</CardTitle>
+                    <CardSubtitle className="orderItem__price">${inventoryItem.rentalPrice} x {orderItem.rentalLength} days = ${totalRentalPrice}</CardSubtitle>
+                    <Button color="danger">Remove from cart</Button>
+                </CardBody>
             </Card>
         </>
     )

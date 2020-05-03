@@ -3,7 +3,7 @@ import { addDays } from "date-fns"
 import React, { useState, useContext } from "react"
 import { Button } from "reactstrap"
 import "./Inventory.css"
-import { OrderItemContext } from "../order/OderItemProvider"
+import { OrderItemContext } from "../order/OrderItemProvider"
 
 export const DatePickerComponent = ({inventory, toggle}) => {
 

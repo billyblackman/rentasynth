@@ -11,12 +11,12 @@ export const OrderItemProvider = (props) => {
     //orderItem = data
     //setOrderItem sets the state of the orderItem
 
-    const [orderItem, setOrderItem] = useState([])
+    const [orderItems, setOrderItems] = useState([])
 
-    const getOrderItem = () => {
+    const getOrderItems = () => {
         return fetch("http://localhost:8088/orderItems")
             .then(response => response.json())
-            .then(setOrderItem)
+            .then(setOrderItems)
     }
 
     const addOrderItem = (orderItem) => {
@@ -27,14 +27,14 @@ export const OrderItemProvider = (props) => {
             },
             body: JSON.stringify(orderItem)
         })
-            .then(getOrderItem)
+            .then(getOrderItems)
     }
 
     const deleteOrderItem = (orderItemId) => {
-        return fetch(`http://localhost:8088/orderItem/${orderItemId}`, {
+        return fetch(`http://localhost:8088/orderItems/${orderItemId}`, {
             method: "DELETE"
         })
-            .then(getOrderItem)
+            .then(getOrderItems)
     }
 
     const updateOrderItem = orderItem => {
@@ -45,7 +45,7 @@ export const OrderItemProvider = (props) => {
             },
             body: JSON.stringify(orderItem)
         })
-            .then(getOrderItem)
+            .then(getOrderItems)
     }
 
     /*
@@ -53,12 +53,12 @@ export const OrderItemProvider = (props) => {
         an empty array is the second argument to avoid infinite loop.
     */
 
-        useEffect( () => { getOrderItem() }, [] )
+        useEffect( () => { getOrderItems() }, [] )
 
     return (
         <OrderItemContext.Provider value ={
             {
-                orderItem,
+                orderItems,
                 addOrderItem,
                 deleteOrderItem,
                 updateOrderItem
