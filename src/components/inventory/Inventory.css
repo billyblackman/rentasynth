@@ -22,3 +22,7 @@
     background-color: rgb(183, 217, 228);
     border-radius: 1%;
 }
+
+.button {
+    margin: 2px;
+}

@@ -1,7 +1,7 @@
 import DatePicker from "react-datepicker"
 import { addDays } from "date-fns"
 import React, { useState, useContext } from "react"
-import { Button } from "reactstrap"
+import { Button, ButtonGroup } from "reactstrap"
 import "./Inventory.css"
 import { OrderItemContext } from "../order/OrderItemProvider"
 
@@ -46,11 +46,17 @@ export const DatePickerComponent = ({inventory, toggle}) => {
                 orderStartDate: startDate,
                 orderEndDate: endDate,
                 ordered: false,
-                rentalLength: rentalLength()
+                shipping: shipping,
+                rentalLength: rentalLength(),
+                totalRentalPrice: (rentalLength() * inventory.rentalPrice)
             })
             .then(toggle)
         }
     }
+
+//Sets state for pickup/ship method
+
+    const [shipping, setShipping] = useState(false)
 
     return (
         <>
@@ -69,15 +75,22 @@ export const DatePickerComponent = ({inventory, toggle}) => {
                             className="datePicker"
                             id="datePicker"
                             dateFormat="yyyy-MM-dd"
-                            minDate={addDays(new Date(), 2)}
+                            minDate={addDays(new Date(), 3)}
                             placeholderText="Return Date"
                             fixedHeight
                             onChange={date => setEndDate(date)} />
 
             <br />
 
-                <Button onClick={constructOrderItem} color="primary">Add to cart</Button>
+                <ButtonGroup className="button">
+                    <Button color="secondary" onClick={() => setShipping(false)} active={shipping === false}>Pickup</Button>
+                    <Button color="secondary" onClick={() => setShipping(true)} active={shipping === true}>Ship</Button>
+                </ButtonGroup>
+                <Button className="button" onClick={constructOrderItem} color="primary">Add to cart</Button>
 
         </>
     )
 }
+
+
+

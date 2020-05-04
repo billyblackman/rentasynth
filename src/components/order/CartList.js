@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { OrderItemContext } from "./OrderItemProvider"
 import "./Cart.css"
-import { ListGroup } from "reactstrap"
+import { ListGroup, ListGroupItem } from "reactstrap"
 import { CartTableItem } from "./CartTableItem"
 
 export default () => {
@@ -22,6 +22,9 @@ export default () => {
                         return <CartTableItem key={orderItem.id} orderItem={orderItem} />
                     })
                 }
+                <ListGroupItem className="list-group-item d-flex justify-content-around align-items-center">
+                    
+                </ListGroupItem>
             </ListGroup>
         </>
     )
