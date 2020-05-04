@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { ListGroupItemHeading, ListGroupItemText, ListGroupItem, Button } from "reactstrap"
+import { ListGroupItemHeading, ListGroupItemText, ListGroupItem, Row, Button, Col } from "reactstrap"
 import { OrderItemContext } from "./OrderItemProvider"
 import { InventoryContext } from "../inventory/InventoryProvider"
 
@@ -20,11 +20,16 @@ export const CartTableItem =({orderItem}) => {
 
     return (
         <>
-                <ListGroupItem className="list-group-item d-flex justify-content-around align-items-center">
-                    <ListGroupItemHeading className="inventoryItem__name">{inventoryItem.make} {inventoryItem.model}</ListGroupItemHeading>
-                    <ListGroupItemText className="orderItem__price">${inventoryItem.rentalPrice} x {orderItem.rentalLength} days = ${totalRentalPrice}</ListGroupItemText>
-                    <Button color="danger" onClick={deleteButton}>Remove from cart</Button>
-                </ListGroupItem>
+                <Row className="list-group-item d-flex justify-content-around align-items-center">
+                    <Col className="inventoryItem__name">{inventoryItem.make} {inventoryItem.model}</Col>
+                    <Col className="orderItem__price">${inventoryItem.rentalPrice} x {orderItem.rentalLength} days = ${totalRentalPrice}</Col>
+                    {
+                        (orderItem.shipping === true ? <Col>Shipping = ${inventoryItem.shippingPrice}</Col> : <Col>Pickup</Col>)
+                    }
+                    <Col>
+                        <Button color="danger" onClick={deleteButton}>Remove from cart</Button>
+                    </Col>
+                </Row>
         </>
     )
 }

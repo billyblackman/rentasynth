@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { OrderItemContext } from "./OrderItemProvider"
 import "./Cart.css"
-import { ListGroup, ListGroupItem } from "reactstrap"
+import { ListGroup, ListGroupItem, Row, Col } from "reactstrap"
 import { CartTableItem } from "./CartTableItem"
 
 export default () => {
@@ -14,6 +14,18 @@ export default () => {
         return (item.userId === userId && item.ordered === false)
     })
 
+    const orderSubTotalFunction = () => {
+        let costArray = []
+        theMatchingOrderItems.map( item => {
+            costArray.push(item.totalRentalPrice)
+        })
+        const costArraySum = costArray.reduce((a,b) => a + b, 0)
+        return costArraySum
+    }
+    
+    const orderSubTotal = orderSubTotalFunction()
+    debugger
+
     return (
         <>
             <ListGroup>
@@ -22,9 +34,9 @@ export default () => {
                         return <CartTableItem key={orderItem.id} orderItem={orderItem} />
                     })
                 }
-                <ListGroupItem className="list-group-item d-flex justify-content-around align-items-center">
-                    
-                </ListGroupItem>
+                <Row>
+                    <Col>Total: ${orderSubTotal}</Col>
+                </Row>
             </ListGroup>
         </>
     )

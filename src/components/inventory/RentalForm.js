@@ -25,10 +25,7 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         return rentalLengthDays
     }
 
-//Sets state for date picker
-
-    const [startDate, setStartDate] = useState(null)
-    const [endDate, setEndDate] = useState(null)
+//Function to create an order item
 
     const constructOrderItem = () => {
 
@@ -54,6 +51,11 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         }
     }
 
+//Sets state for date picker
+
+const [startDate, setStartDate] = useState(null)
+const [endDate, setEndDate] = useState(null)
+
 //Sets state for pickup/ship method
 
     const [shipping, setShipping] = useState(false)
@@ -62,22 +64,22 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         <>
             
                 <DatePicker selected={startDate}
+                            withPortal
                             className="datePicker"
                             id="datePicker"
                             dateFormat="yyyy-MM-dd"
                             minDate={addDays(new Date(), 1)}
                             placeholderText="Start Date"
-                            fixedHeight
                             onChange={date => setStartDate(date)} />
             <br />
 
                 <DatePicker selected={endDate}
+                            withPortal
                             className="datePicker"
                             id="datePicker"
                             dateFormat="yyyy-MM-dd"
-                            minDate={addDays(new Date(), 3)}
+                            minDate={addDays(startDate, 3)}
                             placeholderText="Return Date"
-                            fixedHeight
                             onChange={date => setEndDate(date)} />
 
             <br />
