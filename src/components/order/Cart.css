@@ -1,0 +1,20 @@
+.orderItemList {
+    display: flex;
+    padding: 0 10rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.cartItem {
+    height: fit-content;
+}
+
+.card {
+    height: fit-content;
+}
+
+.cardBody {
+    background-color: rgb(183, 217, 228);
+    border-radius: 1%;
+}

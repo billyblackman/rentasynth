@@ -1,13 +1,14 @@
 import React, { useContext } from "react"
-import { Card, CardImg, CardTitle, CardSubtitle, Button, CardBody } from "reactstrap"
+import { ListGroupItemHeading, ListGroupItemText, ListGroupItem, Button } from "reactstrap"
 import { OrderItemContext } from "./OrderItemProvider"
 import { InventoryContext } from "../inventory/InventoryProvider"
 
 //CartList will pass keys to Cart object
 
-export const CartItem =({orderItem}) => {
+export const CartTableItem =({orderItem}) => {
 
     const { deleteOrderItem } = useContext(OrderItemContext)
+    const deleteButton = () => deleteOrderItem(orderItem.id)
 
     const { inventory } = useContext(InventoryContext)
 
@@ -17,17 +18,13 @@ export const CartItem =({orderItem}) => {
 
     const totalRentalPrice = (inventoryItem.rentalPrice * orderItem.rentalLength)
 
-    const deleteButton = () => deleteOrderItem(orderItem.id)
-
     return (
         <>
-            <Card className="cartItem">
-                <CardBody>
-                    <CardTitle className="inventoryItem__name">{inventoryItem.make} {inventoryItem.model}</CardTitle>
-                    <CardSubtitle className="orderItem__price">${inventoryItem.rentalPrice} x {orderItem.rentalLength} days = ${totalRentalPrice}</CardSubtitle>
+                <ListGroupItem className="list-group-item d-flex justify-content-around align-items-center">
+                    <ListGroupItemHeading className="inventoryItem__name">{inventoryItem.make} {inventoryItem.model}</ListGroupItemHeading>
+                    <ListGroupItemText className="orderItem__price">${inventoryItem.rentalPrice} x {orderItem.rentalLength} days = ${totalRentalPrice}</ListGroupItemText>
                     <Button color="danger" onClick={deleteButton}>Remove from cart</Button>
-                </CardBody>
-            </Card>
+                </ListGroupItem>
         </>
     )
 }
