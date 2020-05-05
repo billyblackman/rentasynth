@@ -5,6 +5,7 @@ import CartList from "./order/CartList"
 import { OrderItemProvider } from "./order/OrderItemProvider"
 import { Navbar, NavbarBrand, NavLink } from "reactstrap"
 import "./navbar.css"
+import { OrderProvider } from "./order/OrderProvider"
 
 export default (props) => {
 
@@ -26,7 +27,9 @@ export default (props) => {
 
         <InventoryProvider>
             <OrderItemProvider>
-                <InventoryList />
+                <OrderProvider>
+                    <InventoryList />
+                </OrderProvider>
             </OrderItemProvider>
         </InventoryProvider>
     )
@@ -37,7 +40,7 @@ export default (props) => {
 
         <InventoryProvider>
             <OrderItemProvider>
-                <CartList />
+                    <CartList />
             </OrderItemProvider>
         </InventoryProvider>
     )

@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { ListGroupItemHeading, ListGroupItemText, ListGroupItem, Row, Button, Col } from "reactstrap"
+import { Row, Button, Col } from "reactstrap"
 import { OrderItemContext } from "./OrderItemProvider"
 import { InventoryContext } from "../inventory/InventoryProvider"
 

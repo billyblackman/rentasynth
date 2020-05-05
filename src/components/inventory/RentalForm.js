@@ -4,12 +4,15 @@ import React, { useState, useContext } from "react"
 import { Button, ButtonGroup } from "reactstrap"
 import "./Inventory.css"
 import { OrderItemContext } from "../order/OrderItemProvider"
+import { OrderContext } from "../order/OrderProvider"
+
 
 export const DatePickerComponent = ({inventory, toggle}) => {
 
-//Imports functions from OrderItemProvider
+//Imports functions from OrderItemProvider and OrderProvider
 
     const { addOrderItem } = useContext(OrderItemContext)
+    const { addOrder } = useContext(OrderContext)
 
 //Grabs user ID from session storage
 
@@ -44,6 +47,7 @@ export const DatePickerComponent = ({inventory, toggle}) => {
                 orderEndDate: endDate,
                 ordered: false,
                 shipping: shipping,
+                shippingCost: inventory.shippingPrice,
                 rentalLength: rentalLength(),
                 totalRentalPrice: (rentalLength() * inventory.rentalPrice)
             })
@@ -51,10 +55,33 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         }
     }
 
+//Function to create an order
+
+    const constructOrder = () => {
+
+        addOrder({
+            userId: userId,
+            totalPrice: ((rentalLength() * inventory.rentalPrice) + inventory.shippingPrice),
+            resolved: false,
+            shippingCost: inventory.shippingPrice
+        })
+    }
+
+//Wraps constructOrderItem and constructOrder into one function to pass into button click
+
+    const constructBoth = () => {
+        constructOrder()
+        constructOrderItem()
+    }
+
+//Function to add to an order
+
+
+
 //Sets state for date picker
 
-const [startDate, setStartDate] = useState(null)
-const [endDate, setEndDate] = useState(null)
+    const [startDate, setStartDate] = useState(null)
+    const [endDate, setEndDate] = useState(null)
 
 //Sets state for pickup/ship method
 
@@ -88,7 +115,7 @@ const [endDate, setEndDate] = useState(null)
                     <Button color="secondary" onClick={() => setShipping(false)} active={shipping === false}>Pickup</Button>
                     <Button color="secondary" onClick={() => setShipping(true)} active={shipping === true}>Ship</Button>
                 </ButtonGroup>
-                <Button className="button" onClick={constructOrderItem} color="primary">Add to cart</Button>
+                <Button className="button" onClick={constructBoth} color="primary">Add to cart</Button>
 
         </>
     )
