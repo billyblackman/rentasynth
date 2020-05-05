@@ -28,6 +28,15 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         return rentalLengthDays
     }
 
+//Loops through all order to see if the current user has an incomplete order
+
+    const findIncompleteOrder = () => {
+            
+        orders.find( order => {
+            return (order.userId === userId && order.ordered === false)
+        })
+    }
+
 //Function to create an order item
 
     const constructOrderItem = () => {
@@ -54,28 +63,6 @@ export const DatePickerComponent = ({inventory, toggle}) => {
             .then(toggle)
         }
     }
-
-//Function to create an order
-
-    const constructOrder = () => {
-
-        addOrder({
-            userId: userId,
-            totalPrice: ((rentalLength() * inventory.rentalPrice) + inventory.shippingPrice),
-            resolved: false,
-            shippingCost: inventory.shippingPrice
-        })
-    }
-
-//Wraps constructOrderItem and constructOrder into one function to pass into button click
-
-    const constructBoth = () => {
-        constructOrder()
-        constructOrderItem()
-    }
-
-//Function to add to an order
-
 
 
 //Sets state for date picker
@@ -115,7 +102,7 @@ export const DatePickerComponent = ({inventory, toggle}) => {
                     <Button color="secondary" onClick={() => setShipping(false)} active={shipping === false}>Pickup</Button>
                     <Button color="secondary" onClick={() => setShipping(true)} active={shipping === true}>Ship</Button>
                 </ButtonGroup>
-                <Button className="button" onClick={constructBoth} color="primary">Add to cart</Button>
+                <Button className="button" onClick={constructOrderItem} color="primary">Add to cart</Button>
 
         </>
     )

@@ -40,7 +40,9 @@ export default (props) => {
 
         <InventoryProvider>
             <OrderItemProvider>
+                <OrderProvider>
                     <CartList />
+                </OrderProvider>
             </OrderItemProvider>
         </InventoryProvider>
     )
