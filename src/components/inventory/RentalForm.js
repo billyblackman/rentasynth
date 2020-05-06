@@ -28,10 +28,7 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         return rentalLengthDays
     }
     
-//Function to create an order
-
-
-//Should be a state variable. effect hook listens for state change in orders
+//useEffect watches for changes in orders and sets the state of the matching order ID, to be passed to the order item created
 
 const [matchingOrderId, setMatchingOrderId] = useState(null)
 
@@ -44,10 +41,10 @@ useEffect(() => {
             } else {
                     addOrder({
                         userId: userId,
-                        totalPrice: ((rentalLength() * inventory.rentalPrice) + inventory.shippingPrice),
+                        totalPrice: ((rentalLength() * inventory.rentalPrice) + shippingCost),
                         resolved: false,
                         ordered: false,
-                        shippingCost: inventory.shippingPrice
+                        shippingCost: shippingCost
                     })
             }
         
@@ -75,13 +72,13 @@ useEffect(() => {
                 orderEndDate: endDate,
                 ordered: false,
                 shipping: shipping,
-                shippingCost: inventory.shippingPrice,
+                shippingCost: shippingCost,
                 rentalLength: rentalLength(),
                 totalRentalPrice: (rentalLength() * inventory.rentalPrice)
             })
             .then(toggle)
         }
-    }
+    }   
 
 
 //Sets state for date picker
@@ -92,6 +89,17 @@ useEffect(() => {
 //Sets state for pickup/ship method
 
     const [shipping, setShipping] = useState(false)
+    const [shippingCost, setShippingCost] = useState(0)
+
+    const setShippingTrue = () => {
+        setShipping(true)
+        setShippingCost(inventory.shippingPrice)
+    }
+
+    const setShippingFalse = () => {
+        setShipping(false)
+        setShippingCost(0)
+    }
 
     return (
         <>
@@ -118,8 +126,8 @@ useEffect(() => {
             <br />
 
                 <ButtonGroup className="button">
-                    <Button color="secondary" onClick={() => setShipping(false)} active={shipping === false}>Pickup</Button>
-                    <Button color="secondary" onClick={() => setShipping(true)} active={shipping === true}>Ship</Button>
+                    <Button color="secondary" onClick={setShippingFalse} active={shipping === false}>Pickup</Button>
+                    <Button color="secondary" onClick={setShippingTrue} active={shipping === true}>Ship</Button>
                 </ButtonGroup>
                 <Button className="button" onClick={constructOrderItem} color="primary">Add to cart</Button>
 
