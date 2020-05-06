@@ -1,0 +1,41 @@
+import React, { useContext } from "react"
+import { OrderItemContext } from "./OrderItemProvider"
+import { Card, CardBody, CardTitle, CardSubtitle, Badge } from "reactstrap"
+import { orderSubTotalFunction, orderShippingCostFunction } from "./CartList"
+
+export const Order = ({order}) => {
+
+//Get all of the order items
+
+    const { orderItems } = useContext(OrderItemContext)
+
+//Find all the order items included in the order
+
+    const theMatchingItems = orderItems.filter( orderItem => {
+        return (orderItem.orderId === order.id)
+    })  
+
+//Adds all of the orderItem subtotals and shipping
+
+    const orderSubTotal = orderSubTotalFunction(theMatchingItems)
+    const orderShippingTotal = orderShippingCostFunction(theMatchingItems)
+    const orderTotal = (orderSubTotal + orderShippingTotal)
+
+
+    return (
+        <>
+            <Card className="order">
+                <CardBody>
+                    <CardTitle>Order #{order.id}</CardTitle>
+                    <CardSubtitle>Total: ${orderTotal}</CardSubtitle>
+                    {
+                        (order.resolved === false ? 
+                        <Badge color="secondary">Order Active</Badge> :
+                        <Badge color="success">Order Complete</Badge>)
+                    }
+                </CardBody>
+            </Card>
+        </>
+    )
+
+}

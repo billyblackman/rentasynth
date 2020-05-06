@@ -5,7 +5,7 @@ import { InventoryContext } from "../inventory/InventoryProvider"
 
 //CartList will pass keys to Cart object
 
-export const CartTableItem =({orderItem}) => {
+export const CartTableItem = ({orderItem}) => {
 
     const { deleteOrderItem } = useContext(OrderItemContext)
     const deleteButton = () => deleteOrderItem(orderItem.id)

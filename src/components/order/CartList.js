@@ -3,8 +3,34 @@ import { OrderItemContext } from "./OrderItemProvider"
 import "./Cart.css"
 import { ListGroup, Row, Col, Button, ListGroupItem } from "reactstrap"
 import { CartTableItem } from "./CartTableItem"
+import { OrderContext } from "./OrderProvider"
+import { Order } from "./Order"
+
+//Adds all of the order subtotals
+
+    export const orderSubTotalFunction = (items) => {
+        let costArray = []
+        items.map( item => {
+            costArray.push(item.totalRentalPrice)
+        })
+        const costArraySum = costArray.reduce((a,b) => a + b, 0)
+        return costArraySum
+    }
+
+//Adds all of the order shipping costs
+
+    export const orderShippingCostFunction = (items) => {
+        let costArray = []
+        items.map( item => {
+            costArray.push(item.shippingCost)
+        })
+        const costArraySum = costArray.reduce((a,b) => a + b, 0)
+        return costArraySum
+    }
 
 export default () => {
+    
+    const { orders } = useContext(OrderContext)
 
     const { orderItems } = useContext(OrderItemContext)
 
@@ -12,61 +38,55 @@ export default () => {
     
 //Loops through all order items and returns an array of those that match the user
 
-    const theMatchingOrderItems = orderItems.filter( item => {
+    const theMatchingUnorderedItems = orderItems.filter( item => {
         return (item.userId === userId && item.ordered === false)
     })
 
+    const theMatchingOrderedItems = orderItems.filter( item => {
+        return (item.userId === userId && item.ordered === true)
+    })
+
+
 //Adds all of the order rental costs
-
-    const orderSubTotalFunction = () => {
-        let costArray = []
-        theMatchingOrderItems.map( item => {
-            costArray.push(item.totalRentalPrice)
-        })
-        const costArraySum = costArray.reduce((a,b) => a + b, 0)
-        return costArraySum
-    }
     
-    const orderSubTotal = orderSubTotalFunction()
+    const orderedSubTotal = orderSubTotalFunction(theMatchingOrderedItems)
+    const unorderedSubTotal = orderSubTotalFunction(theMatchingUnorderedItems)
 
-//Adds all of the order shipping costs
-
-    const orderShippingCostFunction = () => {
-        let costArray = []
-        theMatchingOrderItems.map( item => {
-            costArray.push(item.shippingCost)
-        })
-        const costArraySum = costArray.reduce((a,b) => a + b, 0)
-        return costArraySum
-    }
+//Shipping totals for ordered and unordered items
     
-    const orderShippingTotal = orderShippingCostFunction()
+    const unorderedShippingTotal = orderShippingCostFunction(theMatchingUnorderedItems)
+    const orderedShippingTotal = orderShippingCostFunction(theMatchingOrderedItems)
 
 //Adds the subtotal and shipping
 
-    const orderTotal = (orderSubTotal + orderShippingTotal)
-
-//
-
+    const orderedTotal = (orderedSubTotal + orderedShippingTotal)
+    const unorderedTotal = (unorderedSubTotal + unorderedShippingTotal)
 
     return (
         <>
             <ListGroup>
                 {
-                    theMatchingOrderItems.map( orderItem => {
+                    theMatchingUnorderedItems.map( orderItem => {
                         return <CartTableItem key={orderItem.id} orderItem={orderItem} />
                     })
                 }
                 
                 <ListGroupItem>
                     <Row className="text-primary d-flex justify-content-around align-items-center">
-                        <Col>Subtotal: ${orderSubTotal}</Col>
-                        <Col>Shipping: ${orderShippingTotal}</Col>
-                        <Col><h6>Total: ${orderTotal}</h6></Col>
+                        <Col>Subtotal: ${unorderedSubTotal}</Col>
+                        <Col>Shipping: ${unorderedShippingTotal}</Col>
+                        <Col><h6>Total: ${unorderedTotal}</h6></Col>
                         <Col><Button className="button" color="primary">Place Order</Button></Col>
                     </Row>
                 </ListGroupItem>
             </ListGroup>
+            <ul>
+                {
+                    orders.map( order => {
+                        return <Order key={order.id} order={order}/>
+                    })
+                }
+            </ul>
         </>
     )
 
