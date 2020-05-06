@@ -37,7 +37,7 @@ export const OrderItemProvider = (props) => {
             .then(getOrderItems)
     }
 
-    const updateOrderItem = orderItem => {
+    const orderOrderItem = orderItem => {
         return fetch(`http://localhost:8088/orderItems/${orderItem.id}`, {
             method: "PATCH",
             body: JSON.stringify({
@@ -63,7 +63,7 @@ export const OrderItemProvider = (props) => {
                 orderItems,
                 addOrderItem,
                 deleteOrderItem,
-                updateOrderItem
+                orderOrderItem
             }
         }>
             {props.children}

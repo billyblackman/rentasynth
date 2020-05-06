@@ -30,11 +30,17 @@ import { Order } from "./Order"
 
 export default () => {
     
-    const { orders } = useContext(OrderContext)
+    const { orders, orderOrder } = useContext(OrderContext)
 
-    const { orderItems, updateOrderItem } = useContext(OrderItemContext)
+    const { orderItems, orderOrderItem } = useContext(OrderItemContext)
 
     const userId = sessionStorage.getItem("rentasynth__customer")
+
+//Loops through all orders and returns the user's unordered order
+
+    const theOrderedOrders = orders.filter( order => {
+        return (order.userId === userId && order.ordered === true)
+    })
     
 //Loops through all order items and returns an array of those that match the user
 
@@ -42,32 +48,29 @@ export default () => {
         return (item.userId === userId && item.ordered === false)
     })
 
-    const theMatchingOrderedItems = orderItems.filter( item => {
-        return (item.userId === userId && item.ordered === true)
-    })
-
-
 //Adds all of the order rental costs
     
-    const orderedSubTotal = orderSubTotalFunction(theMatchingOrderedItems)
     const unorderedSubTotal = orderSubTotalFunction(theMatchingUnorderedItems)
 
 //Shipping totals for ordered and unordered items
     
     const unorderedShippingTotal = orderShippingCostFunction(theMatchingUnorderedItems)
-    const orderedShippingTotal = orderShippingCostFunction(theMatchingOrderedItems)
 
 //Adds the subtotal and shipping
 
-    const orderedTotal = (orderedSubTotal + orderedShippingTotal)
     const unorderedTotal = (unorderedSubTotal + unorderedShippingTotal)
 
-//Function to update ordered status of order items
+//Function to update ordered status of order and order items
+
+    const theMatchingOrder = orders.find( order => {
+        return (order.userId === userId && order.ordered === false)
+    })
 
     const updateOrderItems = () => {
         theMatchingUnorderedItems.map( item => {
-            updateOrderItem(item)
+            orderOrderItem(item)
         })
+        orderOrder(theMatchingOrder)
     }
 
     return (
@@ -90,7 +93,7 @@ export default () => {
             </ListGroup>
             <ul>
                 {
-                    orders.map( order => {
+                    theOrderedOrders.map( order => {
                         return <Order key={order.id} order={order}/>
                     })
                 }

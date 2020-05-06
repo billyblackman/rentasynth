@@ -37,13 +37,15 @@ export const OrderProvider = (props) => {
             .then(getOrders)
     }
 
-    const updateOrder = order => {
+    const orderOrder = order => {
         return fetch(`http://localhost:8088/orders/${order.id}`, {
-            method: "PUT",
+            method: "PATCH",
+            body: JSON.stringify({
+                ordered: true
+            }),
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify(order)
+            }
         })
             .then(getOrders)
     }
@@ -62,7 +64,7 @@ export const OrderProvider = (props) => {
                 addOrder,
                 getOrders,
                 deleteOrder,
-                updateOrder
+                orderOrder
             }
         }>
             {props.children}
