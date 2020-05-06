@@ -60,6 +60,7 @@ export const OrderProvider = (props) => {
             {
                 orders,
                 addOrder,
+                getOrders,
                 deleteOrder,
                 updateOrder
             }

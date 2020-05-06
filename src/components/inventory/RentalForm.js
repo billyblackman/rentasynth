@@ -1,6 +1,6 @@
 import DatePicker from "react-datepicker"
 import { addDays } from "date-fns"
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import { Button, ButtonGroup } from "reactstrap"
 import "./Inventory.css"
 import { OrderItemContext } from "../order/OrderItemProvider"
@@ -9,10 +9,10 @@ import { OrderContext } from "../order/OrderProvider"
 
 export const DatePickerComponent = ({inventory, toggle}) => {
 
-//Imports functions from OrderItemProvider and OrderProvider
+//Imports from OrderItemProvider and OrderProvider
 
-    const { addOrderItem } = useContext(OrderItemContext)
-    const { addOrder } = useContext(OrderContext)
+    const { addOrderItem, orderItems } = useContext(OrderItemContext)
+    const { addOrder, orders } = useContext(OrderContext)
 
 //Grabs user ID from session storage
 
@@ -27,15 +27,33 @@ export const DatePickerComponent = ({inventory, toggle}) => {
         const rentalLengthDays = (rentalLengthTimeStamp / (60*60*24*1000))
         return rentalLengthDays
     }
+    
+//Function to create an order
 
-//Loops through all order to see if the current user has an incomplete order
 
-    const findIncompleteOrder = () => {
+//Should be a state variable. effect hook listens for state change in orders
+
+const [matchingOrderId, setMatchingOrderId] = useState(null)
+
+useEffect(() => {
+       
+            let theMatchingOrder = (orders.find( order => order.userId === userId && order.ordered === false))
             
-        orders.find( order => {
-            return (order.userId === userId && order.ordered === false)
-        })
-    }
+            if (typeof theMatchingOrder !== "undefined") {
+                setMatchingOrderId(theMatchingOrder.id)
+            } else {
+                    addOrder({
+                        userId: userId,
+                        totalPrice: ((rentalLength() * inventory.rentalPrice) + inventory.shippingPrice),
+                        resolved: false,
+                        ordered: false,
+                        shippingCost: inventory.shippingPrice
+                    })
+            }
+        
+    }, [orders, orderItems])
+
+
 
 //Function to create an order item
 
@@ -51,6 +69,7 @@ export const DatePickerComponent = ({inventory, toggle}) => {
 
             addOrderItem({
                 userId: userId,
+                orderId: matchingOrderId,
                 inventoryId: inventory.id,
                 orderStartDate: startDate,
                 orderEndDate: endDate,
