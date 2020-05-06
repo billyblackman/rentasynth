@@ -6,6 +6,16 @@
     justify-content: space-between;
 }
 
+.order {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+}
+
+.orderHeader {
+    margin: 30px;
+}
+
 .cartItem {
     height: fit-content;
 }

@@ -26,7 +26,7 @@ export const Order = ({order}) => {
 
     return (
         <>
-            <Card className="card">
+            <Card className="order">
                 <CardBody className="cardBody">
                     <CardTitle>Order #{order.id}</CardTitle>
                     <CardSubtitle>Total: ${orderTotal}</CardSubtitle>
