@@ -1,7 +1,8 @@
 import React, { useContext } from "react"
 import { OrderItemContext } from "./OrderItemProvider"
-import { Card, CardBody, CardTitle, CardSubtitle, Badge } from "reactstrap"
+import { Card, CardBody, CardTitle, CardSubtitle, Badge, Collapse, Button, ListGroup, ListGroupItem } from "reactstrap"
 import { orderSubTotalFunction, orderShippingCostFunction } from "./CartList"
+import "./Cart.css"
 
 export const Order = ({order}) => {
 
@@ -21,11 +22,12 @@ export const Order = ({order}) => {
     const orderShippingTotal = orderShippingCostFunction(theMatchingItems)
     const orderTotal = (orderSubTotal + orderShippingTotal)
 
+//Sets state for collapse
 
     return (
         <>
-            <Card className="order">
-                <CardBody>
+            <Card className="card">
+                <CardBody className="cardBody">
                     <CardTitle>Order #{order.id}</CardTitle>
                     <CardSubtitle>Total: ${orderTotal}</CardSubtitle>
                     {

@@ -32,7 +32,7 @@ export default () => {
     
     const { orders } = useContext(OrderContext)
 
-    const { orderItems } = useContext(OrderItemContext)
+    const { orderItems, updateOrderItem } = useContext(OrderItemContext)
 
     const userId = sessionStorage.getItem("rentasynth__customer")
     
@@ -62,6 +62,14 @@ export default () => {
     const orderedTotal = (orderedSubTotal + orderedShippingTotal)
     const unorderedTotal = (unorderedSubTotal + unorderedShippingTotal)
 
+//Function to update ordered status of order items
+
+    const updateOrderItems = () => {
+        theMatchingUnorderedItems.map( item => {
+            updateOrderItem(item)
+        })
+    }
+
     return (
         <>
             <ListGroup>
@@ -76,7 +84,7 @@ export default () => {
                         <Col>Subtotal: ${unorderedSubTotal}</Col>
                         <Col>Shipping: ${unorderedShippingTotal}</Col>
                         <Col><h6>Total: ${unorderedTotal}</h6></Col>
-                        <Col><Button className="button" color="primary">Place Order</Button></Col>
+                        <Col><Button className="button" color="primary" onClick={updateOrderItems}>Place Order</Button></Col>
                     </Row>
                 </ListGroupItem>
             </ListGroup>

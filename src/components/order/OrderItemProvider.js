@@ -39,11 +39,13 @@ export const OrderItemProvider = (props) => {
 
     const updateOrderItem = orderItem => {
         return fetch(`http://localhost:8088/orderItems/${orderItem.id}`, {
-            method: "PUT",
+            method: "PATCH",
+            body: JSON.stringify({
+                ordered: true
+            }),
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify(orderItem)
+            }
         })
             .then(getOrderItems)
     }
