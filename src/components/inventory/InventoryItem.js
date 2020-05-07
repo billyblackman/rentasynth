@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Card, CardTitle, CardSubtitle, CardBody, CardImg, Modal, Button, ModalHeader } from "reactstrap"
 import "./Inventory.css"
 import { DatePickerComponent } from "./RentalForm"
 import { EditInventoryForm } from "./EditInventoryForm"
+import { InventoryContext } from "./InventoryProvider"
 
 
 //InventoryList will pass keys to the Inventory object
@@ -22,8 +23,28 @@ export const InventoryItem = ({inventory}) => {
         setUserId(sessionUser)
     }, [sessionUser])
 
+//Delete inventory item button function
 
+    const { deleteInventory } = useContext(InventoryContext)
 
+    const deleteInventoryItemButtonFunction = () => {
+        deleteInventory(inventory.id)
+    }
+
+//Conditional button render function
+
+    const conditionalButtonRenderFunction = () => {
+        if (userId === "1") {
+            return (
+                <>
+                    <Button color="secondary" onClick={toggle}>Edit</Button>
+                    <Button color="danger" onClick={deleteInventoryItemButtonFunction}>Delete</Button>
+                </>
+            )
+        } else {
+            return <Button color="secondary" onClick={toggle}>Rent me</Button>
+        }
+    }
 
     return (
         <>
@@ -32,11 +53,8 @@ export const InventoryItem = ({inventory}) => {
                 <CardBody className="cardBody">
                     <CardTitle className="inventory__name">{inventory.make} {inventory.model}</CardTitle>
                     <CardSubtitle className="inventory__rentalPrice">${inventory.rentalPrice}/day</CardSubtitle>
-                    {
-                        (userId === "1" ? 
-                        <Button color="secondary" onClick={toggle}>Edit</Button> :
-                        <Button color="secondary" onClick={toggle}>Rent me</Button> ) 
-                    }
+                    
+                    {conditionalButtonRenderFunction()}
                     
                 </CardBody>
             </Card>
