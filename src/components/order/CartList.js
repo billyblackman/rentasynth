@@ -36,10 +36,16 @@ export default () => {
 
     const userId = sessionStorage.getItem("rentasynth__customer")
 
-//Loops through all orders and returns the user's unordered order
+//Loops through all orders and returns the user's ordered orders
 
-    const theOrderedOrders = orders.filter( order => {
+    const theUserOrderedOrders = orders.filter( order => {
         return (order.userId === userId && order.ordered === true)
+    })
+
+//Gets all ordered orders to be displayed to owners
+
+    const allTheOrderedOrders = orders.filter( order => {
+        return (order.ordered === true)
     })
     
 //Loops through all order items and returns an array of those that match the user
@@ -100,9 +106,18 @@ export default () => {
             <h2 className="orderHeader">My Orders</h2>
 
             {
-               theOrderedOrders.map( order => {
-                    return <Order key={order.id} order={order}/>
-                })
+                (userId === 1 ?
+
+                    allTheOrderedOrders.map( order => {
+                        return <Order key={order.id} order={order}/>
+                    })
+                    :
+
+                    theUserOrderedOrders.map( order => {
+                        return <Order key={order.id} order={order}/>
+                    })
+
+                )
             }
         </>
     )

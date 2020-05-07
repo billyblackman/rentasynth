@@ -32,7 +32,7 @@ export const Order = ({order}) => {
                     <CardSubtitle>Total: ${orderTotal}</CardSubtitle>
                     {
                         (order.resolved === false ? 
-                            <Badge color="secondary">Order Active</Badge> :
+                            <Badge color="primary">Order Active</Badge> :
                             <Badge color="success">Order Complete</Badge>)
                     }
                 </CardBody>
