@@ -1,10 +1,21 @@
 import React, { useContext } from "react"
 import { OrderItemContext } from "./OrderItemProvider"
-import { Card, CardBody, CardTitle, CardSubtitle, Badge } from "reactstrap"
+import { Card, CardBody, CardTitle, CardSubtitle, Badge, Button } from "reactstrap"
 import { orderSubTotalFunction, orderShippingCostFunction } from "./CartList"
 import "./Cart.css"
+import { OrderContext } from "./OrderProvider"
 
-export const Order = ({order}) => {
+export const Order = ({order, userId}) => {
+    
+//Imports completeOrder function from OrderProvider
+
+    const { completeOrder } = useContext(OrderContext)
+
+//Function to complete order upon button click
+
+    const completeOrderButtonFunction = () => {
+        completeOrder(order)
+    }
 
 //Get all of the order items
 
@@ -22,7 +33,19 @@ export const Order = ({order}) => {
     const orderShippingTotal = orderShippingCostFunction(theMatchingItems)
     const orderTotal = (orderSubTotal + orderShippingTotal)
 
-//Sets state for collapse
+//If statement function to render correct elements
+
+    const conditionalOrderDisplay = () => {
+        if (userId === "1" && order.resolved === false) {
+            return <Button outline color="primary" onClick={completeOrderButtonFunction}>Complete Order</Button>
+        } else if (userId === "1" && order.resolved === true) {
+            return <h4><Badge color="success">Order Completed</Badge></h4>
+        } else if (userId !== "1" && order.resolved === false) {
+            return <h4><Badge color="primary">Active</Badge></h4>
+        } else if (userId !== "1" && order.resolved === true) {
+            return <h4><Badge color="success">Completed</Badge></h4>
+        }
+    }
 
     return (
         <>
@@ -30,11 +53,7 @@ export const Order = ({order}) => {
                 <CardBody className="cardBody">
                     <CardTitle>Order #{order.id}</CardTitle>
                     <CardSubtitle>Total: ${orderTotal}</CardSubtitle>
-                    {
-                        (order.resolved === false ? 
-                            <Badge color="primary">Order Active</Badge> :
-                            <Badge color="success">Order Complete</Badge>)
-                    }
+                    {conditionalOrderDisplay()}
                 </CardBody>
             </Card>
         </>

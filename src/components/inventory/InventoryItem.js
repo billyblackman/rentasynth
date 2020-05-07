@@ -12,14 +12,16 @@ export const InventoryItem = ({inventory}) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
     
-    const [userId, setUserId] = useState(null)
-    
+//Handles userId state
+
     const sessionUser = sessionStorage.getItem("rentasynth__customer")
+    
+    const [userId, setUserId] = useState(null)
     
     useEffect(() => {
         setUserId(sessionUser)
     }, [sessionUser])
-    
+
     return (
         <>
             <Card className="inventory">

@@ -50,6 +50,19 @@ export const OrderProvider = (props) => {
             .then(getOrders)
     }
 
+    const completeOrder = order => {
+        return fetch(`http://localhost:8088/orders/${order.id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                resolved: true
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(getOrders)
+    }
+
     /*
         Load the order when the component is initialized. Ensure that
         an empty array is the second argument to avoid infinite loop.
@@ -64,7 +77,8 @@ export const OrderProvider = (props) => {
                 addOrder,
                 getOrders,
                 deleteOrder,
-                orderOrder
+                orderOrder,
+                completeOrder
             }
         }>
             {props.children}
