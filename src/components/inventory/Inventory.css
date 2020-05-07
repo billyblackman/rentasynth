@@ -1,6 +1,7 @@
 .inventoryList {
     display: flex;
     padding: 0 10rem;
+    margin-top: 6.5rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;

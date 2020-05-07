@@ -80,6 +80,21 @@ useEffect(() => {
         }
     }   
 
+//Defines unavailable dates for each inventory item
+
+    const theMatchingOrderItems = orderItems.filter( orderItem => orderItem.inventoryId === inventory.id)
+    
+    let theUnavailableDates = []
+
+    theMatchingOrderItems.map( orderItem => {
+
+        const orderItemStartDate = new Date(orderItem.orderStartDate)
+        const rentalLengthAmount = orderItem.rentalLength
+
+        for (let i = 0; i < rentalLengthAmount; i++) {
+            theUnavailableDates.push(new Date(addDays(orderItemStartDate, i)))
+        }
+    })
 
 //Sets state for date picker
 
@@ -108,8 +123,10 @@ useEffect(() => {
                             withPortal
                             className="datePicker"
                             id="datePicker"
+                            required
                             dateFormat="yyyy-MM-dd"
                             minDate={addDays(new Date(), 1)}
+                            excludeDates={theUnavailableDates}
                             placeholderText="Start Date"
                             onChange={date => setStartDate(date)} />
             <br />
@@ -120,6 +137,7 @@ useEffect(() => {
                             id="datePicker"
                             dateFormat="yyyy-MM-dd"
                             minDate={addDays(startDate, 3)}
+                            excludeDates={theUnavailableDates}
                             placeholderText="Return Date"
                             onChange={date => setEndDate(date)} />
 
