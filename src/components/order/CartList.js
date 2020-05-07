@@ -95,7 +95,7 @@ import { Order } from "./Order"
                 (theMatchingOrder === undefined ?
                     <Alert color="secondary">Cart is empty</Alert> :
                     
-                    <ListGroup>
+                    <ListGroup className="orderItemList">
                         {
                             theMatchingUnorderedItems.map( orderItem => {
                                 return <CartTableItem key={orderItem.id} orderItem={orderItem} />

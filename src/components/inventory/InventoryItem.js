@@ -37,12 +37,12 @@ export const InventoryItem = ({inventory}) => {
         if (userId === "1") {
             return (
                 <>
-                    <Button color="secondary" onClick={toggle}>Edit</Button>
-                    <Button color="danger" onClick={deleteInventoryItemButtonFunction}>Delete</Button>
+                    <Button className="button" color="secondary" onClick={toggle}>Edit</Button>
+                    <Button className="button" color="danger" onClick={deleteInventoryItemButtonFunction}>Delete</Button>
                 </>
             )
         } else {
-            return <Button color="secondary" onClick={toggle}>Rent me</Button>
+            return <Button color="primary" onClick={toggle}>Rent me</Button>
         }
     }
 

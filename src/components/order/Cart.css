@@ -1,9 +1,5 @@
 .orderItemList {
-    display: flex;
-    padding: 0 10rem;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin-top: 57px;
 }
 
 .order {
