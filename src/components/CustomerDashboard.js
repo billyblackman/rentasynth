@@ -28,7 +28,7 @@ export default (props) => {
         <InventoryProvider>
             <OrderItemProvider>
                 <OrderProvider>
-                    <InventoryList />
+                    <InventoryList userId={userId}/>
                 </OrderProvider>
             </OrderItemProvider>
         </InventoryProvider>
