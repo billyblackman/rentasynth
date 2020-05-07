@@ -2,12 +2,12 @@ import React, { useState } from "react"
 import { Card, CardTitle, CardSubtitle, CardBody, CardImg, Modal, Button, ModalHeader } from "reactstrap"
 import "./Inventory.css"
 import { DatePickerComponent } from "./RentalForm"
+import { EditInventoryForm } from "./EditInventoryForm"
 
-
+const userId = sessionStorage.getItem("rentasynth__customer")
 
 //InventoryList will pass keys to the Inventory object
  
-
  export const InventoryItem = ({inventory}) => {
 
     const [modal, setModal] = useState(false)
@@ -25,7 +25,12 @@ import { DatePickerComponent } from "./RentalForm"
             </Card>
             <Modal id="datePickerModal" isOpen={modal} size="sm" centered={modal} toggle={toggle}>
                 <ModalHeader>
-                    <DatePickerComponent inventory={inventory} toggle={toggle}/>
+                    {
+                        (userId === 1 ? 
+                        <DatePickerComponent inventory={inventory} toggle={toggle}/> :
+                        <EditInventoryForm inventory={inventory} toggle={toggle}/> )
+                    }
+                    
                 </ModalHeader>
             </Modal>
 

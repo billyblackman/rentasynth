@@ -38,7 +38,7 @@ export const InventoryProvider = (props) => {
     }
 
     const updateInventory = inventory => {
-        return fetch(`http://localhost:8088/inventorys/${inventory.id}`, {
+        return fetch(`http://localhost:8088/inventory/${inventory.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

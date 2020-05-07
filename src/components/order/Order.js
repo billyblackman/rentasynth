@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { OrderItemContext } from "./OrderItemProvider"
-import { Card, CardBody, CardTitle, CardSubtitle, Badge, Collapse, Button, ListGroup, ListGroupItem } from "reactstrap"
+import { Card, CardBody, CardTitle, CardSubtitle, Badge } from "reactstrap"
 import { orderSubTotalFunction, orderShippingCostFunction } from "./CartList"
 import "./Cart.css"
 
@@ -32,8 +32,8 @@ export const Order = ({order}) => {
                     <CardSubtitle>Total: ${orderTotal}</CardSubtitle>
                     {
                         (order.resolved === false ? 
-                        <Badge color="secondary">Order Active</Badge> :
-                        <Badge color="success">Order Complete</Badge>)
+                            <Badge color="secondary">Order Active</Badge> :
+                            <Badge color="success">Order Complete</Badge>)
                     }
                 </CardBody>
             </Card>

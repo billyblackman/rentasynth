@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { OrderItemContext } from "./OrderItemProvider"
 import "./Cart.css"
-import { ListGroup, Row, Col, Button, ListGroupItem, Jumbotron, Container, Alert } from "reactstrap"
+import { ListGroup, Row, Col, Button, ListGroupItem, Alert } from "reactstrap"
 import { CartTableItem } from "./CartTableItem"
 import { OrderContext } from "./OrderProvider"
 import { Order } from "./Order"
