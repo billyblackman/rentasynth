@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react"
 import { InventoryContext } from "./InventoryProvider"
 import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import "./Inventory.css"
 
 export const NewInventoryForm = ({ toggle }) => {
 
@@ -33,7 +34,7 @@ export const NewInventoryForm = ({ toggle }) => {
     }
 
     return (
-        <Form>
+        <Form className="newInventoryForm">
             <FormGroup>
                 <Label htmlFor="make">Make</Label>
                 <Input type="text"

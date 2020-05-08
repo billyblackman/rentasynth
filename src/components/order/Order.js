@@ -39,11 +39,11 @@ export const Order = ({order, userId}) => {
         if (userId === "1" && order.resolved === false) {
             return <Button outline color="primary" onClick={completeOrderButtonFunction}>Complete Order</Button>
         } else if (userId === "1" && order.resolved === true) {
-            return <h4><Badge color="success">Order Completed</Badge></h4>
+            return <h4><Button color="success" disabled>Order Completed</Button></h4>
         } else if (userId !== "1" && order.resolved === false) {
-            return <h4><Badge color="primary">Active</Badge></h4>
+            return <h4><Button color="primary">Active</Button></h4>
         } else if (userId !== "1" && order.resolved === true) {
-            return <h4><Badge color="success">Completed</Badge></h4>
+            return <h4><Button color="success" disabled>Completed</Button></h4>
         }
     }
 

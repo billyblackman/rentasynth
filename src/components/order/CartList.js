@@ -93,7 +93,7 @@ import { Order } from "./Order"
         <br/>
             {
                 (theMatchingOrder === undefined ?
-                    <Alert color="secondary">Cart is empty</Alert> :
+                    <Alert className="orderItemList" color="secondary">Cart is empty</Alert> :
                     
                     <ListGroup className="orderItemList">
                         {
