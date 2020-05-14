@@ -32,8 +32,8 @@ export default () => {
                 return (
                     <>
                         <Card className="inventory">
-                            <CardImg src="https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/p960x960/53211103_359484971560784_3412520596649541632_o.jpg?_nc_cat=109&_nc_sid=dd9801&_nc_oc=AQlrGKXKc_0GXJ4M65vL8_oqgVBsxe4c90QnkYU4v9dvjOqCRXye3OQkhvp1ydcCQuA&_nc_ht=scontent-ort2-1.xx&_nc_tp=6&oh=3fd08fbb6510cbc685b008c483b29e43&oe=5ECEBCEC" />
                             <CardBody className="cardBody">
+                            <CardImg src="https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/p960x960/53211103_359484971560784_3412520596649541632_o.jpg?_nc_cat=109&_nc_sid=dd9801&_nc_oc=AQlrGKXKc_0GXJ4M65vL8_oqgVBsxe4c90QnkYU4v9dvjOqCRXye3OQkhvp1ydcCQuA&_nc_ht=scontent-ort2-1.xx&_nc_tp=6&oh=3fd08fbb6510cbc685b008c483b29e43&oe=5ECEBCEC" />
                                 <br/>
                                 <br />
                                 <Button onClick={toggle} color="primary">New item</Button> 

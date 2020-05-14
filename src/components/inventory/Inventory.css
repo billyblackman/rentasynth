@@ -5,21 +5,44 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    background-color: rgb(175, 175, 175);
 }
 
 .inventory {
     width: 300px;
     height: 300px;
     margin: 20px;
+    background-color: gray;
 }
 
 .card {
     height: fit-content;
+    color: dimgray;
+    background-color: gray;
+}
+
+.card-title {
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.card-subtitle {
+    font-size: large;
+}
+
+.cardImageContainer {
+    height: 258px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 1%;
 }
 
 .cardBody {
     background-color: rgb(183, 217, 228);
     border-radius: 1%;
+    height: 394px;
+    color: black;
 }
 
 .button {

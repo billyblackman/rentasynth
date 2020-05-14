@@ -49,8 +49,10 @@ export const InventoryItem = ({inventory}) => {
     return (
         <>
             <Card className="inventory">
-                <CardImg src={inventory.picture} />
                 <CardBody className="cardBody">
+                    <div className="cardImageContainer">
+                        <CardImg className="cardImage" src={inventory.picture} />
+                    </div>
                     <CardTitle className="inventory__name">{inventory.make} {inventory.model}</CardTitle>
                     <CardSubtitle className="inventory__rentalPrice">${inventory.rentalPrice}/day</CardSubtitle>
                     

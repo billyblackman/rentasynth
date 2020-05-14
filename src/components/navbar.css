@@ -5,9 +5,14 @@
 
 .navLink {
     color: rgb(173, 173, 173);
+    font-size: large;
 }
 
 .navImage {
     width: 55px;
     height: 55px;
+}
+
+.fixed-top {
+    bottom: 33.4em;
 }

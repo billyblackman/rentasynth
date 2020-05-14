@@ -3,7 +3,7 @@ import { InventoryProvider } from "./inventory/InventoryProvider"
 import InventoryList from "./inventory/InventoryList"
 import CartList from "./order/CartList"
 import { OrderItemProvider } from "./order/OrderItemProvider"
-import { Navbar, NavbarBrand, NavLink } from "reactstrap"
+import { Navbar, NavbarBrand, NavLink, NavbarText } from "reactstrap"
 import "./navbar.css"
 import { OrderProvider } from "./order/OrderProvider"
 

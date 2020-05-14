@@ -1,15 +1,23 @@
 .orderItemList {
-    margin-top: 57px;
+    margin-top: 80px;
 }
 
 .order {
-    width: 300px;
+    width: 220px;
     height: 300px;
     margin: 20px;
+    background-color: gray;
 }
 
 .orderHeader {
     margin: 30px;
+}
+
+.orderList {
+    display: flex;
+    flex-wrap: wrap;
+    height: -webkit-fill-available;
+    align-content: baseline;
 }
 
 .cartItem {
@@ -18,9 +26,12 @@
 
 .card {
     height: fit-content;
+    background-color: gray;
 }
 
-.cardBody {
+.orderCardBody {
     background-color: rgb(183, 217, 228);
     border-radius: 1%;
+    color: black;
+    height: 10em;
 }

@@ -117,7 +117,7 @@ import { Order } from "./Order"
                 (userId === "1" ? <h2 className="orderHeader">Orders</h2> : <h2 className="orderHeader">My Orders</h2>)
             }
             
-
+        <ul className="orderList">
             {
                 (userId === "1" 
                 
@@ -135,6 +135,7 @@ import { Order } from "./Order"
 
                 )
             }
+        </ul>
         </>
     )
 
