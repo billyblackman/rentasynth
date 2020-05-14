@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Card, CardTitle, CardSubtitle, CardBody, CardImg, Modal, Button, ModalHeader } from "reactstrap"
+import { Card, CardTitle, CardSubtitle, CardBody, CardImg, Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 import "./Inventory.css"
 import { DatePickerComponent } from "./RentalForm"
 import { EditInventoryForm } from "./EditInventoryForm"
@@ -10,8 +10,15 @@ import { InventoryContext } from "./InventoryProvider"
 
 export const InventoryItem = ({inventory}) => {
     
+//Rent datepicker modal state
+
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
+
+//Detail modal state
+
+const [detailModal, setDetailModal] = useState(false)
+const detailToggle = () => setDetailModal(!detailModal)
     
 //Handles userId state
     
@@ -42,7 +49,12 @@ export const InventoryItem = ({inventory}) => {
                 </>
             )
         } else {
-            return <Button color="primary" onClick={toggle}>Rent me</Button>
+            return (
+                <>
+                    <Button className="button" color="primary" onClick={toggle}>Rent me</Button>
+                    <Button className="button" color="secondary" onClick={detailToggle}>Details</Button>
+                </>
+            ) 
         }
     }
 
@@ -70,7 +82,12 @@ export const InventoryItem = ({inventory}) => {
                     
                 </ModalHeader>
             </Modal>
-
+            <Modal id="detailModal" isOpen={detailModal} size="sm" centered={detailModal} toggle={detailToggle}>
+                    <ModalHeader>{inventory.make} {inventory.model}</ModalHeader>
+                    <ModalBody className="detailModal">
+                        {inventory.description}
+                    </ModalBody>
+            </Modal>        
         </>
     )
 }
