@@ -1,4 +1,5 @@
 import React, { useRef } from "react"
+import { Button, Form, FormGroup } from "reactstrap"
 
 
 export const Login = (props) => {
@@ -34,30 +35,30 @@ export const Login = (props) => {
 
     return (
         <div className="container--login">
-            <form className="form--login" onSubmit={handleLogin}>
+            <Form className="form--login" onSubmit={handleLogin}>
                 <h2>Sign in</h2>
-                <fieldset>
+                <FormGroup>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email"
                         id="email"
                         className="form-control"
                         placeholder="Email address"
                         required autoFocus />
-                </fieldset>
-                <fieldset>
+                </FormGroup>
+                <FormGroup>
                     <label htmlFor="inputPassword"> Password </label>
                     <input ref={password} type="password"
                         id="password"
                         className="form-control"
                         placeholder="Password"
                         required />
-                </fieldset>
-                <fieldset>
-                    <button type="submit">
+                </FormGroup>
+                <FormGroup>
+                    <Button type="submit">
                         Sign in
-                    </button>
-                </fieldset>
-            </form>
+                    </Button>
+                </FormGroup>
+            </Form>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
-
+import { Form, FormGroup, Label, Input, Button } from "reactstrap"
+import "./Auth.css"
 
 export const Register = (props) => {
     const firstName = useRef()
@@ -51,56 +52,49 @@ export const Register = (props) => {
     }
 
     return (
-        <div className="container--login">
-            <form className="form--register" onSubmit={handleRegister}>
+            <Form className="form--register" onSubmit={handleRegister}>
                 <h2>Register</h2>
-                <fieldset>
-                    <label htmlFor="firstName"> First Name </label>
-                    <input ref={firstName} type="text"
+                <FormGroup>
+                    <Label htmlFor="firstName"> First Name </Label>
+                    <Input ref={firstName} type="text"
                         name="firstName"
-                        className="form-control"
                         placeholder="First name"
                         required  />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="lastName"> Last Name </label>
-                    <input ref={lastName} type="text"
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="lastName"> Last Name </Label>
+                    <Input ref={lastName} type="text"
                         name="lastName"
-                        className="form-control"
                         placeholder="Last name"
                         required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="inputEmail"> Email address </label>
-                    <input ref={email} type="email"
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="inputEmail"> Email address </Label>
+                    <Input ref={email} type="email"
                         name="email"
-                        className="form-control"
                         placeholder="Email address"
                         required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="inputPassword"> Password </label>
-                    <input ref={password} type="password"
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="inputPassword"> Password </Label>
+                    <Input ref={password} type="password"
                         name="password"
-                        className="form-control"
                         placeholder="Password"
                         required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <input ref={verifyPassword} type="password"
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="verifyPassword"> Verify Password </Label>
+                    <Input ref={verifyPassword} type="password"
                         name="verifyPassword"
-                        className="form-control"
                         placeholder="Verify password"
                         required />
-                </fieldset>
-                <fieldset>
-                    <button type="submit">
+                </FormGroup>
+                <FormGroup>
+                    <Button type="submit">
                         Register
-                    </button>
-                </fieldset>
-            </form>
-        </div>
+                    </Button>
+                </FormGroup>
+            </Form>
     )
 }
 
